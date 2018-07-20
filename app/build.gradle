@@ -1,0 +1,31 @@
+apply plugin: 'com.netease.customplugin'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.example.administrator.androidcomponent"
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    annotationProcessor 'com.netease.up:routerCompiler:1.0.0'
+    implementation project(':componentservice')
+}
+
+upBuildGradle {
+    applicationName = 'com.example.administrator.androidcomponent.AppApplication'
+    isAutoRegisterComponent = true
+}

@@ -1,0 +1,1 @@
+include ':app', ':upCustomPlugin', ':commonbasiclibrary', ':routerCompiler', ':routerAnnotation', ':upcomponent', ':componentservice', ':componentlibs', ':gamecomponent'

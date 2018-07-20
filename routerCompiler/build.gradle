@@ -1,0 +1,28 @@
+apply plugin: 'java-library'
+apply plugin: 'maven'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.auto.service:auto-service:1.0-rc2'
+    implementation 'com.squareup:javapoet:1.9.0'
+
+
+    implementation 'org.apache.commons:commons-lang3:3.4'
+    implementation 'org.apache.commons:commons-collections4:4.1'
+    implementation 'com.netease.up:routerAnnotation:1.0.0'
+    
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+uploadArchives{
+    repositories.mavenDeployer{
+        // 本地仓库路径
+        repository(url:uri("../localmavenrepos"))
+        // 唯一标识
+        pom.groupId = "com.netease.up"
+        // 版本号
+        pom.version = "1.0.0"
+    }
+}

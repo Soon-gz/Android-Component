@@ -1,0 +1,9 @@
+auto generated, do not change !!!! 
+
+HOST : upComponent
+
+Up主界面
+/UpActivity
+upBean:com.example.componentservice.upFragmentService.UpBean
+UpName:String
+

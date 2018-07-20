@@ -1,0 +1,39 @@
+apply plugin: 'com.netease.customplugin'
+
+
+android {
+    compileSdkVersion 26
+
+
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:support-v4:26.1.0'
+    implementation project(':componentservice')
+    annotationProcessor "com.google.dagger:dagger-compiler:2.11"
+}
+
+upBuildGradle {
+    applicationName = "com.example.gamecomponent.appInject.GameApplication"
+    isAutoRegisterComponent = false
+}
