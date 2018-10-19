@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by hzwuwenchao on 2017/11/7.
  */
-
+@Deprecated
 public abstract class BaseIPlugin implements IPluginInterface {
     protected List<BaseIPlugin> dependOnPlugins = new ArrayList<>();
     protected List<BaseIPlugin> sortedDependOnPlugins = new ArrayList<>();

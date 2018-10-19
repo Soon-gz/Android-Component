@@ -14,13 +14,7 @@ import com.example.componentlibs.base.IApplicationInterface;
 public class UpApplication extends Application implements IApplicationInterface {
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        UpIPlugin.init(this);
-    }
-
-    @Override
-    public void init(Application application) {
+    public void init() {
         Log.i("tag00","初始化upApplication");
     }
 }

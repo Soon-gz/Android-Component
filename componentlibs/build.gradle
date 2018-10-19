@@ -45,6 +45,6 @@ uploadArchives {
         // 唯一标识
         pom.groupId = "com.netease.up"
         // 版本号
-        pom.version = "1.0.0"
+        pom.version = "1.0.2"
     }
 }

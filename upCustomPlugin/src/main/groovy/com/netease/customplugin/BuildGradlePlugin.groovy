@@ -7,27 +7,20 @@ class BuildGradlePlugin implements Plugin<Project> {
 
     //默认是app，直接运行assembleRelease的时候，等同于运行app:assembleRelease
     String compilemodule = "app"
-
     void apply(Project project) {
-
         project.extensions.create('upBuildGradle', ComExtension)
-
         String module = project.path.replace(":", "")
         System.out.println("========================== " + module + " BuildGradlePlugin start ===============================")
-
         String taskNames = project.gradle.startParameter.taskNames.toString()
         System.out.println("taskNames is " + taskNames)
         AssembleTask assembleTask = getTaskInfo(project.gradle.startParameter.taskNames)
-
         if (assembleTask.isAssemble) {
             fetchMainModuleName(project, assembleTask)
             System.out.println("compilemodule  is " + compilemodule)
         }
-
         if (!project.hasProperty("isRunAlone")) {
             throw new RuntimeException("you should set isRunAlone in " + module + "'s gradle.properties")
         }
-
         //对于isRunAlone==true的情况需要根据实际情况修改其值，但如果是false，则不用修改
         boolean isRunAlone = Boolean.parseBoolean((project.properties.get("isRunAlone")))
         String mainmodulename = project.rootProject.property("mainmodulename")
@@ -41,7 +34,6 @@ class BuildGradlePlugin implements Plugin<Project> {
             }
         }
         project.setProperty("isRunAlone", isRunAlone)
-
         //根据配置添加各种组件依赖，并且自动化生成组件加载代码
         if (isRunAlone) {
             project.apply plugin: 'com.android.application'
@@ -125,7 +117,6 @@ class BuildGradlePlugin implements Plugin<Project> {
         } else {
             components = (String) project.properties.get("compileComponent")
         }
-
         if (components == null || components.length() == 0) {
             System.out.println("there is no add dependencies ")
             return

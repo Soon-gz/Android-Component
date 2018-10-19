@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="me_navbar_bg">#1AFFFFFF</color>
+    <color name="standard_split_line_color">#E4E4E4</color>
+    <color name="me_head_line_color">#33FFFFFF</color>
+    <color name="me_attention_text_color">#BBFFFFFF</color>
+    <color name="me_attention_num_color">#FFFFFF</color>
+    <color name="me_prise_text_color">#7AFFFFFF</color>
+
+</resources>

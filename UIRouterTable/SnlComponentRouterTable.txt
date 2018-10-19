@@ -1,0 +1,11 @@
+auto generated, do not change !!!! 
+
+HOST : snlComponent
+
+SNL组件，登录界面
+/LoginActivity
+
+SNL组件，分享界面
+/ShareActivity
+shareStr:String
+

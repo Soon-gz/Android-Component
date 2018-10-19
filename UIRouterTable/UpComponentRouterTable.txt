@@ -2,8 +2,20 @@ auto generated, do not change !!!!
 
 HOST : upComponent
 
+使用json字符串传参
+/uirouter/demo/6
+EXTRA_OBJ_FOO:com.example.componentservice.bean.Foo
+
+必须参数
+/uirouter/demo/7
+foo:String
+
+必须参数2
+/uirouter/demo/8
+foo:String
+
 Up主界面
 /UpActivity
-upBean:com.example.componentservice.upFragmentService.UpBean
+upBean:parcelable
 UpName:String
 

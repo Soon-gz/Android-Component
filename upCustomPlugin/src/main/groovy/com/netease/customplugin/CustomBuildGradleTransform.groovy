@@ -13,6 +13,7 @@ class CustomBuildGradleTransform extends Transform {
     ClassPool classPool
     String applicationName
     String applicationInjectPackage
+    String iPluginInterfacePackage
 
     CustomBuildGradleTransform(Project project) {
         this.project = project
@@ -25,6 +26,9 @@ class CustomBuildGradleTransform extends Transform {
         getRealApplicationName(transformInvocation.getInputs())
         classPool = new ClassPool()
         applicationInjectPackage = project.rootProject.property("IApplicationInjectPackage")
+        iPluginInterfacePackage = project.rootProject.property("IPluginInterfacePackage")
+        System.out.println("iPluginInterfacePackage is   " + iPluginInterfacePackage)
+
         project.android.bootClasspath.each {
             classPool.appendClassPath((String) it.absolutePath)
         }
@@ -34,6 +38,8 @@ class CustomBuildGradleTransform extends Transform {
         List<CtClass> applications = new ArrayList<>()
         //要收集的applicationInject，一般情况下有几个组件就有几个applicationInject
         List<CtClass> activators = new ArrayList<>()
+        //要收集的继承了basePlugin
+        List<CtClass> plugins = new ArrayList<>()
 
         for (CtClass ctClass : box) {
             if (isApplication(ctClass)) {
@@ -43,12 +49,18 @@ class CustomBuildGradleTransform extends Transform {
             if (isActivator(ctClass)) {
                 activators.add(ctClass)
             }
+            if (isPlugin(ctClass)) {
+                plugins.add(ctClass)
+            }
         }
         for (CtClass ctClass : applications) {
             System.out.println("application is   " + ctClass.getName())
         }
         for (CtClass ctClass : activators) {
             System.out.println("applicationInject is   " + ctClass.getName())
+        }
+        for (CtClass ctClass : plugins) {
+            System.out.println("iPluginInterfacePackage is   " + ctClass.getName())
         }
 
         transformInvocation.inputs.each { TransformInput input ->
@@ -82,7 +94,7 @@ class CustomBuildGradleTransform extends Transform {
                         if (classNameTemp.endsWith(".class")) {
                             String className = classNameTemp.substring(1, classNameTemp.length() - 6)
                             if (className.equals(applicationName)) {
-                                injectApplicationCode(applications.get(0), activators, fileName)
+                                injectApplicationCode(applications.get(0), activators, fileName,plugins)
                             }
                         }
                     }
@@ -106,18 +118,19 @@ class CustomBuildGradleTransform extends Transform {
     }
 
 
-    private void injectApplicationCode(CtClass ctClassApplication, List<CtClass> activators, String patch) {
+    private void injectApplicationCode(CtClass ctClassApplication, List<CtClass> activators, String patch,List<CtClass> plugins) {
         System.out.println("injectApplicationCode begin")
         ctClassApplication.defrost()
         try {
             CtMethod attachBaseContextMethod = ctClassApplication.getDeclaredMethod("onCreate", null)
             attachBaseContextMethod.insertAfter(getAutoLoadComCode(activators))
+            attachBaseContextMethod.insertAfter(getAutoLoadPlugin(plugins))
         } catch (CannotCompileException | NotFoundException e) {
             StringBuilder methodBody = new StringBuilder()
             methodBody.append("protected void onCreate() {")
             methodBody.append("super.onCreate();")
-            methodBody.
-                    append(getAutoLoadComCode(activators))
+            methodBody.append(getAutoLoadComCode(activators))
+            methodBody.append(getAutoLoadComCode(plugins))
             methodBody.append("}")
             ctClassApplication.addMethod(CtMethod.make(methodBody.toString(), ctClassApplication))
         } catch (Exception e) {
@@ -138,6 +151,16 @@ class CustomBuildGradleTransform extends Transform {
         return autoLoadComCode.toString()
     }
 
+    private String getAutoLoadPlugin(List<CtClass> plugins) {
+        StringBuilder autoLoadComCode = new StringBuilder()
+        for (CtClass ctClass : plugins) {
+            autoLoadComCode.append("new " + ctClass.getName() + "()" + ".init();")
+        }
+
+        return autoLoadComCode.toString()
+    }
+
+
 
     private boolean isApplication(CtClass ctClass) {
         try {
@@ -154,6 +177,20 @@ class CustomBuildGradleTransform extends Transform {
         try {
             for (CtClass ctClassInter : ctClass.getInterfaces()) {
                 if (applicationInjectPackage.equals(ctClassInter.name)) {
+                    return true
+                }
+            }
+        } catch (Exception e) {
+            println "class not found exception class name:  " + ctClass.getName()
+        }
+
+        return false
+    }
+
+    private boolean isPlugin(CtClass ctClass) {
+        try {
+            for (CtClass ctClassInter : ctClass.getInterfaces()) {
+                if (iPluginInterfacePackage.equals(ctClassInter.name)) {
                     return true
                 }
             }

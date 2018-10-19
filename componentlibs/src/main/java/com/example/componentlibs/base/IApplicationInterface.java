@@ -5,5 +5,5 @@ package com.example.componentlibs.base;
  */
 
 public interface IApplicationInterface {
-    void init(android.app.Application application);
+    void init();
 }

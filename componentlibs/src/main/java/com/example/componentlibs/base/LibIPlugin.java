@@ -7,6 +7,7 @@ import android.app.Application;
  * 日期：2018/7/18. 15:24
  * 描述：
  */
+@Deprecated
 public class LibIPlugin extends BaseIPlugin {
     @Override
     public void dependency() {
@@ -21,10 +22,10 @@ public class LibIPlugin extends BaseIPlugin {
     @Override
     public void execute(Application application) {
         if (application instanceof LibApplication) {
-            ((LibApplication) application).init(application);
+            ((LibApplication) application).init();
         } else {
             LibApplication myapp = new LibApplication();
-            myapp.init(application);
+            myapp.init();
         }
     }
 

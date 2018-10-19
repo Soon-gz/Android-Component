@@ -3,8 +3,7 @@ package com.example.upcomponent.appInject;
 import com.example.commonbasiclibrary.applicationinject.IApplicationInject;
 import com.example.commonbasiclibrary.router.Router;
 import com.example.commonbasiclibrary.router.ui.UIRouter;
-import com.example.componentservice.upFragmentService.UpFragmentService;
-import com.example.upcomponent.UpFragment;
+import com.example.componentservice.upComponentService.UpFragmentService;
 import com.example.upcomponent.serviceImpl.UpFragmentServiceImpl;
 
 /**
@@ -25,6 +24,6 @@ public class UpApplicationInject implements IApplicationInject {
     @Override
     public void onStop() {
         uiRouter.unregisterUI("upComponent");
-        router.unregisterComponent(UpFragmentService.class.getSimpleName());
+        router.removeService(UpFragmentService.class.getSimpleName());
     }
 }

@@ -15,21 +15,8 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.CLASS)
 public @interface RouteNode {
-    /**
-     * path of one route
-     */
     String path();
-    /**
-     * The priority of route.
-     *
-     * we inspect the path and throw exception when duplicated
-     * paths were find, thus, it's useless and impossible to use priority
-     */
     @Deprecated
     int priority() default -1;
-
-    /**
-     * description of the activity, user for gen route table
-     */
     String desc() default "";
 }

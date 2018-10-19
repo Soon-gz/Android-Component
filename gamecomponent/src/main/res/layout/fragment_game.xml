@@ -1,28 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:orientation="vertical"
-              xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/game"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="gotoUpActivity_with_no_params"/>
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="50dp"
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/game2"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="gotoUpActivity_with_name"/>
-    <TextView
-        android:id="@+id/game3"
-        android:background="#eeeeee"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text=""/>
+        android:id="@+id/game_presenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="50dp" />
+
+    <Button
+        android:id="@+id/upDemo6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="使用json字符串传参,跳转UP组件Demo6Activity" />
+
+    <Button
+        android:id="@+id/upDemo7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="必须参数-log输出,跳转UP组件Demo7Activity" />
+
+    <Button
+        android:id="@+id/upDemo8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="必须参数-空指针校验,跳转UP组件Demo8Activity" />
+    <Button
+        android:id="@+id/upDemo9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="跳转UP组件UPActivity" />
+
+    <Button
+        android:id="@+id/upDemo10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="跳转SNL组件,调用分享" />
+
 </LinearLayout>

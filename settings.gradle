@@ -1,1 +1,1 @@
-include ':app', ':upCustomPlugin', ':commonbasiclibrary', ':routerCompiler', ':routerAnnotation', ':upcomponent', ':componentservice', ':componentlibs', ':gamecomponent'
+include ':app', ':upCustomPlugin', ':commonbasiclibrary', ':routerCompiler', ':routerAnnotation', ':upcomponent', ':componentservice', ':componentlibs', ':gamecomponent', ':mecomponent', ':snlcomponent'

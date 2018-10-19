@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/activity_main_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <HorizontalScrollView
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/load_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="加载UP组件"/>
+                <Button
+                    android:id="@+id/un_load_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="卸载UP组件"/>
+                <Button
+                    android:id="@+id/load_game"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="加载GAME组件"/>
+                <Button
+                    android:id="@+id/un_load_game"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="卸载GAME组件"/>
+                <Button
+                    android:id="@+id/load_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="加载ME组件"/>
+                <Button
+                    android:id="@+id/un_load_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="卸载ME组件"/>
+                <Button
+                    android:id="@+id/load_snl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="加载SNL组件"/>
+                <Button
+                    android:id="@+id/un_load_snl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="卸载SNL组件"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+        <RadioGroup
+            android:id="@+id/bottomNavi"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bottomNavHeight"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:paddingTop="2dp">
+
+            <RadioButton
+                android:id="@+id/button_up"
+                style="@style/app_mainPageBottomNavButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:drawableTop="@drawable/app_bottom_nav_up"
+                android:text="UP" />
+
+            <RadioButton
+                android:id="@+id/button_game"
+                style="@style/app_mainPageBottomNavButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/app_bottom_nav_game"
+                android:text="GAME" />
+
+            <RadioButton
+                android:id="@+id/button_me"
+                style="@style/app_mainPageBottomNavButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/app_bottom_nav_me"
+                android:text="ME" />
+        </RadioGroup>
+
+        <View
+            android:id="@+id/viewSplit"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@id/bottomNavi"
+            android:background="@color/app_common_standard_split_bg" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/mainContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/top"
+            android:layout_above="@+id/viewSplit" />
+
+    </RelativeLayout>
+</layout>

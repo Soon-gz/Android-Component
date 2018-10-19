@@ -9,6 +9,7 @@ public class RouteUtils {
     private static final String ROUTERIMPL_OUTPUT_PKG = "com.netease.up.router";
     private static final String DOT = ".";
     private static final String UIROUTER = "UiRouter";
+    private static final String UIROUTERMANAGER = "UiRouterManager";
 
     private static final String ROUTERTABLE = "RouterTable";
 
@@ -28,6 +29,11 @@ public class RouteUtils {
 
     public static String genRouterTable(String host) {
         String claName = "./UIRouterTable/" + firstCharUpperCase(host) + ROUTERTABLE + ".txt";
+        return new String(claName);
+    }
+
+    public static String genUiRouterManager(String host) {
+        String claName = ROUTERIMPL_OUTPUT_PKG + DOT + firstCharUpperCase(host) + UIROUTERMANAGER;
         return new String(claName);
     }
 

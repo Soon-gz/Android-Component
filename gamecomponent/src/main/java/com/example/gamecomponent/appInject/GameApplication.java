@@ -11,14 +11,9 @@ import com.example.componentlibs.base.IApplicationInterface;
  * 描述：
  */
 public class GameApplication extends Application implements IApplicationInterface{
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        GameIPlugin.init(this);
-    }
 
     @Override
-    public void init(Application application) {
+    public void init() {
         Log.i("tag00","初始化GameApplication");
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ShareActivity">
+        <com.example.componentservice.customViews.UnScrollableGridView
+            android:id="@+id/shareGridView"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:verticalSpacing="12dp"
+            android:background="@drawable/share_background"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:numColumns="3"
+            android:scrollbars="none"
+            android:layout_centerHorizontal="true"
+            android:stretchMode="columnWidth"
+            />
+    </RelativeLayout>

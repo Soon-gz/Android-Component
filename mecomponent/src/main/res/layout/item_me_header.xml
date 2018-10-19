@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivHeadBackgroud"
+        android:layout_width="match_parent"
+        android:layout_height="217.5dp"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/me_head_bg" />
+
+
+    <RelativeLayout
+        android:id="@+id/relArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/ivHeadBackgroud"
+        android:layout_marginBottom="21dp">
+
+        <View
+            android:id="@+id/viewSplite"
+            android:layout_width="0.5dp"
+            android:layout_height="9.6dp"
+            android:layout_toLeftOf="@id/linAppr"
+            android:background="@color/me_head_line_color"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/tvAttention"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4.8dp"
+            android:layout_toLeftOf="@id/tvAttentionNum"
+            android:paddingLeft="28.8dp"
+            android:text="关注"
+            android:textColor="@color/me_attention_text_color"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvAttentionNum"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@id/tvAttention"
+            android:layout_alignTop="@id/tvAttention"
+            android:layout_centerVertical="true"
+            android:textStyle="bold"
+            android:paddingRight="28.8dp"
+            android:layout_toLeftOf="@id/viewSplite"
+            android:gravity="center"
+            android:text="- 0"
+            android:textColor="@color/me_attention_num_color"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/linAppr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/tvBlackWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="28.8dp"
+            android:text="鉴赏"
+            android:textColor="@color/me_attention_text_color"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvBlackWhiteNum"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4.8dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="- 0"
+            android:paddingRight="28.8dp"
+            android:textColor="@color/me_attention_num_color"
+            android:textSize="12sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewSplit"
+            android:layout_width="0.5dp"
+            android:layout_height="9.6dp"
+            android:layout_toRightOf="@id/linAppr"
+            android:background="@color/me_head_line_color"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/tvPraise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4.8dp"
+            android:layout_toRightOf="@id/viewSplit"
+            android:paddingLeft="28.8dp"
+            android:text="获赞"
+            android:textColor="@color/me_attention_text_color"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvPraiseNum"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@id/tvPraise"
+            android:layout_alignTop="@id/tvPraise"
+            android:layout_centerVertical="true"
+            android:paddingRight="28.8dp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/tvPraise"
+            android:gravity="center"
+            android:text="- 0"
+            android:textColor="@color/me_prise_text_color"
+            android:textSize="12sp" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/relArea"
+        android:layout_marginBottom="15dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="登录查看信息"
+            android:textColor="#ffffff"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/tvUserDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivHeadPic"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_above="@id/linArea"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:padding="5dp"
+        android:src="@drawable/img_circle_head" />
+
+    <ImageView
+        android:id="@+id/ivUserHonour"
+        android:layout_width="24dp"
+        android:layout_height="26dp"
+        android:layout_alignBottom="@id/ivHeadPic"
+        android:layout_alignRight="@id/ivHeadPic"
+        android:layout_marginBottom="3dp"
+        android:scaleType="centerCrop" />
+
+</RelativeLayout>
+</layout>

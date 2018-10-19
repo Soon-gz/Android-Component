@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="navigation_bar_height">42.4dp</dimen>
+    <dimen name="commonMargin">14.4dp</dimen>
+
+</resources>

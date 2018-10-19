@@ -3,7 +3,7 @@ package com.example.upcomponent.serviceImpl;
 
 import android.support.v4.app.Fragment;
 
-import com.example.componentservice.upFragmentService.UpFragmentService;
+import com.example.componentservice.upComponentService.UpFragmentService;
 import com.example.upcomponent.UpFragment;
 
 /**

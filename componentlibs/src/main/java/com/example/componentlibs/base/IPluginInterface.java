@@ -5,7 +5,7 @@ import android.app.Application;
 /**
  * Created by hzwuwenchao on 2017/11/7.
  */
-
+@Deprecated
 public interface IPluginInterface {
     void dependency();
     void configure();

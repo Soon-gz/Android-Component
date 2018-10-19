@@ -14,8 +14,10 @@
             <option value="$PROJECT_DIR$/componentlibs" />
             <option value="$PROJECT_DIR$/componentservice" />
             <option value="$PROJECT_DIR$/gamecomponent" />
+            <option value="$PROJECT_DIR$/mecomponent" />
             <option value="$PROJECT_DIR$/routerAnnotation" />
             <option value="$PROJECT_DIR$/routerCompiler" />
+            <option value="$PROJECT_DIR$/snlcomponent" />
             <option value="$PROJECT_DIR$/upCustomPlugin" />
             <option value="$PROJECT_DIR$/upcomponent" />
           </set>

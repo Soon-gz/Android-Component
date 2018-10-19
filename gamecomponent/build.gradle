@@ -13,9 +13,17 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [host: rootProject.ext.gameComponent,
+                             applicationName: rootProject.ext.gameApplication,
+                             dependsOn: rootProject.ext.upApplicationIPlugin+','+snlApplicationIPlugin]
+            }
+        }
     }
-
+    dataBinding {
+        enabled = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -30,10 +38,11 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:support-v4:26.1.0'
     implementation project(':componentservice')
+    annotationProcessor 'com.netease.up:routerCompiler:1.0.0'
     annotationProcessor "com.google.dagger:dagger-compiler:2.11"
 }
 
 upBuildGradle {
-    applicationName = "com.example.gamecomponent.appInject.GameApplication"
-    isAutoRegisterComponent = false
+    applicationName = rootProject.ext.gameApplication
+    isAutoRegisterComponent = true
 }

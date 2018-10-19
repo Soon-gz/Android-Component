@@ -10,6 +10,7 @@ import com.example.routercompiler.utils.Logger;
 import com.example.routercompiler.utils.TypeUtils;
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
@@ -45,17 +46,14 @@ import static com.example.routercompiler.utils.Constants.ACTIVITY;
 import static com.example.routercompiler.utils.Constants.ANNOTATION_TYPE_ROUTER;
 import static com.example.routercompiler.utils.Constants.ANNOTATION_TYPE_ROUTE_NODE;
 import static com.example.routercompiler.utils.Constants.BASECOMPROUTER;
+import static com.example.routercompiler.utils.Constants.BASE_IUROUTER;
 import static com.example.routercompiler.utils.Constants.KEY_HOST_NAME;
 import static javax.lang.model.element.Modifier.PUBLIC;
 
 /**
- * <p><b>Package:</b> com.luojilab.router.compiler.processor </p>
- * <p><b>Project:</b> DDComponentForAndroid </p>
- * <p><b>Classname:</b> RouterProcessor </p>
- * <p><b>Description:</b> generate RouterLoader class for 'Router' annotated class,
- * parse 'RouteNode' annotated Activities to mapper
- * </p>
- * Created by leobert on 2017/9/18.
+ * @author ShuWen
+ * @email shuwen@corp.netease.com
+ * @description:
  */
 @AutoService(Processor.class)
 @SupportedOptions(KEY_HOST_NAME)
@@ -65,6 +63,7 @@ public class RouterProcessor extends AbstractProcessor {
 
     private static final String mRouteMapperFieldName = "routeMapper";
     private static final String mParamsMapperFieldName = "paramsMapper";
+    private static final String mRouteMapperMangerFieldName = "path";
 
     private Logger logger;
 
@@ -116,9 +115,59 @@ public class RouterProcessor extends AbstractProcessor {
             }
             generateRouterImpl();
             generateRouterTable();
+            generateUiManager();
             return true;
         }
         return false;
+    }
+
+    private void generateUiManager() {
+        logger.info(">>> generateUiManager is start  <<<");
+
+        String clsName = RouteUtils.genUiRouterManager(host);
+
+        logger.info(">>> generateUiManager  clsName is "+clsName+" <<<");
+
+        //pkg
+        String pkg = clsName.substring(0, clsName.lastIndexOf("."));
+        logger.info(">>> generateUiManager  pkg is "+pkg+" <<<");
+
+        //simpleName
+        String cn = clsName.substring(clsName.lastIndexOf(".") + 1);
+        logger.info(">>> generateUiManager  cn is "+cn+" <<<");
+
+        ClassName superCls = ClassName.get(elements.getTypeElement(BASE_IUROUTER));
+
+        FieldSpec fieldSpec = FieldSpec.builder(String.class,"path",Modifier.PUBLIC).build();
+
+        MethodSpec methodSpec = MethodSpec.methodBuilder("getPath").addAnnotation(Override.class).addModifiers(PUBLIC).returns(String.class).addStatement("return $S+"+mRouteMapperMangerFieldName,"UP://"+host).build();
+
+        MethodSpec constructorMethod = MethodSpec.constructorBuilder().addParameter(String.class,"path").addStatement("this.path = path").build();
+
+        TypeSpec.Builder builder = TypeSpec.enumBuilder(cn);
+
+        logger.info(">>> generateUiManager   for (Node node : routerNodes) is start <<<");
+
+        for (Node node : routerNodes) {
+            builder.addEnumConstant(node.getRawType().getSimpleName().toString(),TypeSpec.anonymousClassBuilder("$S", node.getPath()).build());
+        }
+
+        try {
+            JavaFile.builder(pkg, builder
+                    .addModifiers(PUBLIC)
+                    .addMethod(methodSpec)
+                    .addSuperinterface(superCls)
+                    .addMethod(constructorMethod)
+                    .addField(fieldSpec)
+                    .build()
+            ).build().writeTo(mFiler);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        logger.info(">>> generateUiManager is end  <<<");
+
+
     }
 
     /**

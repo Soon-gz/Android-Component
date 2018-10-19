@@ -5,7 +5,6 @@ package com.example.routercompiler.utils;
  * <p><b>Project:</b> DDComponentForAndroid </p>
  * <p><b>Classname:</b> Constants </p>
  * <p><b>Description:</b> Constants used by apt </p>
- * Created by leobert on 2017/9/18.
  */
 
 public interface Constants {
@@ -17,6 +16,8 @@ public interface Constants {
     // Options of processor
     ///////////////////////////////////////////////////////////////////////////
     String KEY_HOST_NAME = "host";
+    String KEY_APPLICATION_NAME = "applicationName";
+    String KEY_DEPEND_ON = "dependsOn";
 
     String ANNOTATION_TYPE_ROUTE_NODE = ANNO_FACADE_PKG + ".annotation.RouteNode";
     String ANNOTATION_TYPE_ROUTER = ANNO_FACADE_PKG + ".annotation.Router";
@@ -33,6 +34,7 @@ public interface Constants {
     String PARCELABLE = "android.os.Parcelable";
     String SERIALIZABLE = "java.io.Serializable";
     String BUNDLE = "android.os.Bundle";
+    String APPLICATION = "android.app.Application";
 
     // Java type
     String LANG = "java.lang";
@@ -50,6 +52,10 @@ public interface Constants {
     String JSON_SERVICE = "com.example.commonbasiclibrary.service.JsonService";
 
     String BASECOMPROUTER = "com.example.commonbasiclibrary.router.ui.BaseCompRouter";
+
+    String BASEPLUGIN = "com.example.componentlibs.base.BaseIPlugin";
+
+    String BASE_IUROUTER = "com.example.commonbasiclibrary.router.ui.IUIRouterPathManager";
 
 
 }

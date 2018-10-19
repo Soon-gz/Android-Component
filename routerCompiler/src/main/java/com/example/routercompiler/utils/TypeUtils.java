@@ -17,7 +17,6 @@ import static com.example.routercompiler.utils.Constants.SERIALIZABLE;
  * <p><b>Project:</b> DDComponentForAndroid </p>
  * <p><b>Classname:</b> TypeUtils </p>
  * <p><b>Description:</b> utils for type inference </p>
- * Created by leobert on 2017/9/18.
  */
 
 public class TypeUtils {

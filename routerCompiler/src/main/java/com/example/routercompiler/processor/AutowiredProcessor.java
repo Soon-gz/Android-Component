@@ -47,11 +47,9 @@ import static com.example.routercompiler.utils.Constants.KEY_HOST_NAME;
 import static javax.lang.model.element.Modifier.PUBLIC;
 
 /**
- * <p><b>Package:</b> com.luojilab.router.compiler.processor </p>
- * <p><b>Project:</b> DDComponentForAndroid </p>
- * <p><b>Classname:</b> AutowiredProcessor </p>
- * <p><b>Description:</b> Autowired Processor,Only Activity and Fragment/Fragment_V4 allowed </p>
- * Created by leobert on 2017/9/18.
+ * @author ShuWen
+ * @email shuwen@corp.netease.com
+ * @description:
  */
 @AutoService(Processor.class)
 @SupportedOptions(KEY_HOST_NAME)

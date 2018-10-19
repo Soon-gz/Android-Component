@@ -3,6 +3,7 @@ package com.example.administrator.androidcomponent;
 import android.app.Application;
 import android.util.Log;
 
+import com.example.commonbasiclibrary.router.Router;
 import com.example.componentlibs.base.IApplicationInterface;
 
 /**
@@ -14,12 +15,11 @@ public class AppApplication extends Application implements IApplicationInterface
     @Override
     public void onCreate() {
         super.onCreate();
-        AppIplugin.init(this);
 //        Router.registerComponent("com.example.upcomponent.appInject.UpApplicationInject");
     }
 
     @Override
-    public void init(Application application) {
+    public void init() {
         Log.i("tag00","初始化AppApplication");
     }
 }

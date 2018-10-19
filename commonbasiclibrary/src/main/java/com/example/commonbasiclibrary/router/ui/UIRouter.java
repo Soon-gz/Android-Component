@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-
 import com.example.commonbasiclibrary.exceptions.UiRouterException;
 import com.example.commonbasiclibrary.log.ILogger;
 import com.example.commonbasiclibrary.log.impl.DefaultLogger;
@@ -18,6 +17,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import static com.example.routerannotation.utils.RouteUtils.genUiRouterManager;
 
 /**
  * Singleton implement of {@link IUIRouter}
@@ -57,6 +58,7 @@ public class UIRouter implements IUIRouter {
     }
 
     private static Map<String, IComponentRouter> routerInstanceCache = new HashMap<>();
+    private List<String> uiPathRouters = new ArrayList<>();
 
     private List<IComponentRouter> uiRouters = new ArrayList<>();
     private HashMap<IComponentRouter, Integer> priorities = new HashMap<>();
@@ -96,6 +98,45 @@ public class UIRouter implements IUIRouter {
         priorities.put(router, priority);
     }
 
+
+    public void registerUiPathManager(String host) {
+        if (!TextUtils.isEmpty(host)) {
+            String path = genUiRouterManager(host);
+            if (!uiPathRouters.contains(host)) {
+                uiPathRouters.add(path);
+            }
+        }
+    }
+
+    public String getHostPath(@NonNull String host,@NonNull Class activity) {
+        if (!TextUtils.isEmpty(host) && activity != null  ) {
+            try {
+                Class cls = Class.forName(genUiRouterManager(host));
+                return ((IUIRouterPathManager)Enum.valueOf(cls,activity.getSimpleName())).getPath();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return "default";
+    }
+
+    public String getHostPath(@NonNull String host,@NonNull String activityName) {
+        if (!TextUtils.isEmpty(host) && !TextUtils.isEmpty(activityName)  ) {
+            try {
+                Class cls = Class.forName(genUiRouterManager(host));
+                return ((IUIRouterPathManager)Enum.valueOf(cls,activityName)).getPath();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return "default";
+    }
+
+
     @Override
     public void registerUI(IComponentRouter router) {
         registerUI(router, PRIORITY_NORMAL);
@@ -104,6 +145,7 @@ public class UIRouter implements IUIRouter {
     @Override
     public void registerUI(String host) {
         IComponentRouter router = fetch(host);
+        registerUiPathManager(host);
         if (router != null) {
             registerUI(router, PRIORITY_NORMAL);
         }
@@ -241,6 +283,8 @@ public class UIRouter implements IUIRouter {
 
 
         String path = RouteUtils.genHostUIRouterClass(host);
+
+        String uiPathManager = genUiRouterManager(host);
 
         if (routerInstanceCache.containsKey(path))
             return routerInstanceCache.get(path);

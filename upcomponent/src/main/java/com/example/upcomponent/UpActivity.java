@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.example.commonbasiclibrary.service.AutowiredService;
 import com.example.componentlibs.base.LibApplication;
-import com.example.componentservice.upFragmentService.UpBean;
+import com.example.componentservice.upComponentService.UpBean;
 import com.example.routerannotation.annotation.Autowired;
 import com.example.routerannotation.annotation.RouteNode;
 

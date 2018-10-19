@@ -2,7 +2,7 @@ package com.example.gamecomponent.serviceImpl;
 
 import android.support.v4.app.Fragment;
 
-import com.example.componentservice.gameFragmentService.GameFragmentService;
+import com.example.componentservice.gameComponentService.GameFragmentService;
 import com.example.gamecomponent.GameFragment;
 
 /**
@@ -12,7 +12,7 @@ import com.example.gamecomponent.GameFragment;
  */
 public class GameFragmentServiceImpl implements GameFragmentService {
     @Override
-    public Fragment getGameFragment() {
-        return new GameFragment();
+    public Fragment getGameFragment(String type) {
+        return GameFragment.getInstance(type);
     }
 }

@@ -1,2 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.gamecomponent"/>
+    package="com.example.gamecomponent">
+
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true">
+        <activity android:name=".activity.Demo1Activity" />
+        <activity android:name=".activity.Demo2Activity" />
+        <activity android:name=".activity.Demo3Activity" />
+        <activity android:name=".activity.Demo4Activity" />
+        <activity android:name=".activity.Demo5Activity" />
+    </application>
+</manifest>

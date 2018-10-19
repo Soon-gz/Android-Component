@@ -10,9 +10,14 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [host: rootProject.ext.upComponent]
+                arguments (host: rootProject.ext.upComponent)
+                arguments (applicationName: rootProject.ext.upApplication)
+                arguments (dependsOn: rootProject.ext.gameApplicationIPlugin+','+snlApplicationIPlugin)
             }
         }
+    }
+    dataBinding {
+        enabled = true
     }
     buildTypes {
         release {
@@ -35,5 +40,5 @@ dependencies {
 
 upBuildGradle {
     applicationName = 'com.example.upcomponent.appInject.UpApplication'
-    isAutoRegisterComponent = false
+    isAutoRegisterComponent = true
 }

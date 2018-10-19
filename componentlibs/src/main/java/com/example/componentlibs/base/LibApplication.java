@@ -24,9 +24,9 @@ public class LibApplication extends Application implements IApplicationInterface
     }
 
     @Override
-    public void init(Application application) {
+    public void init() {
         mApplication = this;
-        Log.i("tag00","初始化ServiceApplication");
+        Log.i("tag00","初始化LibApplication");
         applicationComponent = DaggerLibApplicationComponent.create();
         applicationComponent.inject(this);
     }
